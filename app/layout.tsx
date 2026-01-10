@@ -1,3 +1,4 @@
+import React from "react";
 export const metadata = {
   title: "SRDCF Mark 1 Portal",
   description: "Internal performance & reporting portal",
