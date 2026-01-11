@@ -1,6 +1,26 @@
 "use client";
 import { useState } from "react";
 
+const fieldStyle = {
+  width: "100%",
+  padding: "12px",
+  fontSize: "16px",
+  borderRadius: "6px",
+  border: "1px solid #999",
+  boxSizing: "border-box" as const,
+};
+
+const buttonStyle = {
+  width: "100%",
+  padding: "14px",
+  fontSize: "16px",
+  borderRadius: "6px",
+  border: "1px solid #999",
+  cursor: "pointer",
+  background: "#f2f2f2",
+  marginTop: "10px",
+};
+
 export default function SignupPage() {
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
@@ -18,7 +38,10 @@ export default function SignupPage() {
     <div style={{ maxWidth: 400, margin: "80px auto", textAlign: "center" }}>
       <h1>SRDCF Portal Signup</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: "flex", flexDirection: "column", gap: 14 }}
+      >
         <label>Phone Number (Permanent Username)</label>
         <input
           type="tel"
@@ -26,7 +49,7 @@ export default function SignupPage() {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           required
-          style={{ width: "100%", padding: 10, margin: "10px 0" }}
+          style={fieldStyle}
         />
         <p style={{ fontSize: 12 }}>
           This will be your permanent username and cannot be changed later.
@@ -39,14 +62,14 @@ export default function SignupPage() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          style={{ width: "100%", padding: 10, margin: "10px 0" }}
+          style={fieldStyle}
         />
 
         <label>Role</label>
         <select
           value={role}
           onChange={(e) => setRole(e.target.value)}
-          style={{ width: "100%", padding: 10, margin: "10px 0" }}
+          style={fieldStyle}
         >
           <option>Intern</option>
           <option>Volunteer</option>
@@ -61,13 +84,10 @@ export default function SignupPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={{ width: "100%", padding: 10, margin: "10px 0" }}
+          style={fieldStyle}
         />
 
-        <button
-          type="submit"
-          style={{ width: "100%", padding: 12, marginTop: 20 }}
-        >
+        <button type="submit" style={buttonStyle}>
           Create Account
         </button>
       </form>
