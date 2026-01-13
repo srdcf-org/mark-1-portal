@@ -1,9 +1,5 @@
 import nodemailer from "nodemailer";
-
-const otpStore = new Map<
-  string,
-  { otp: string; expires: number; attempts: number }
->();
+import { otpStore } from "../store";
 
 export async function POST(req: Request) {
   const { email } = await req.json();
@@ -12,9 +8,8 @@ export async function POST(req: Request) {
     return Response.json({ error: "Email required" }, { status: 400 });
   }
 
-  // 4-digit OTP
-  const otp = Math.floor(1000 + Math.random() * 9000).toString();
-  const expires = Date.now() + 10 * 60 * 1000; // 10 minutes
+  const otp = Math.floor(1000 + Math.random() * 9000).toString(); // 4 digit
+  const expires = Date.now() + 10 * 60 * 1000; // 10 min
 
   otpStore.set(email, { otp, expires, attempts: 0 });
 
